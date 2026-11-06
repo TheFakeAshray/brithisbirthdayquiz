@@ -166,7 +166,7 @@ body::before {
   display: flex;
   justify-content: center;
   gap: 6px;
-  margin: 14px 0 12px;
+  margin: 14px 0 28px;
   padding: 0;
 }
 

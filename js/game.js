@@ -41,7 +41,7 @@ const ROUNDS = [
     long: true,
     prompt: "How many uncles does Brithi have on her mum’s side whose first names start with A and have an S in them?",
     choices: [
-      { text: "1", correct: false },
+      { text: "2", correct: false },
       { text: "3", correct: true },
       { text: "5", correct: false },
       { text: "7", correct: false }
