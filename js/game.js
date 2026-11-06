@@ -132,6 +132,7 @@ const ROUNDS = [
     label: "Apostles",
     prize: 5,
     long: true,
+    miss: "It's in the name, silly.",
     prompt: "On 29 December 2023, we took you to see the Twelve Apostles. How many apostles are there actually?",
     choices: [
       { text: "1", correct: false },
@@ -552,7 +553,7 @@ function renderQuiz(round) {
         photo.classList.add("is-zoomed");
       }
       if (won) foot.insertBefore(coin(round.prize, "sm"), status);
-      status.textContent = won ? "Token pocketed." : "No token this round.";
+      status.textContent = won ? "Token pocketed." : (round.miss || "No token this round.");
       status.classList.add("round-note");
       const next = button(state.index === ROUNDS.length - 1 ? "To the super spin" : "Next round", "btn compact");
       next.addEventListener("click", advanceRound);
