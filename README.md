@@ -1,8 +1,8 @@
-# Brithi’s Birthday Bonanza
+# Brithi’s Birthday Quiz
 
-A birthday shopping-spree game. Brithi plays thirteen rounds — funny questions and short minigames — and pockets a token for every win. Then she spins. The super token is $300.
+A birthday shopping-spree game. Brithi plays thirteen family questions and pockets a token for every one she gets right. Then she spins. The super token is $200.
 
-A perfect game is **$500**: $200 from the rounds (including one $50 golden token) plus the $300 super token.
+A perfect game is **$350**: $150 from the rounds (including one $50 golden token) plus the $200 super token.
 
 ## Play it
 
@@ -12,7 +12,7 @@ Open `index.html` in a browser, or from this folder:
 python3 -m http.server 5173
 ```
 
-Then visit `http://localhost:5173`.
+Then visit `http://localhost:5173`. The live quiz is at `https://thefakeashray.com/brithisbirthdayquiz/`.
 
 The tab remembers a game in progress. Closing the tab starts fresh. Refreshing mid-round replays that round; finished rounds stay pocketed.
 
@@ -20,24 +20,24 @@ The tab remembers a game in progress. Closing the tab starts fresh. Refreshing m
 
 ## The money
 
-| Round | What she plays | Token |
-| --- | --- | --- |
-| 1 | Main character | $15 |
-| 2 | Birthday breakfast | $12 |
-| 3 | Pop 8 balloons | $10 |
-| 4 | Shop doors | $8 |
-| 5 | Cake science | $15 |
-| 6 | Memory match | $12 |
-| 7 | Golden rule | $50 |
-| 8 | The perfect thing | $15 |
-| 9 | Catch 7 gifts | $10 |
-| 10 | Family duty | $8 |
-| 11 | This or that | $15 |
-| 12 | Present timing | $15 |
-| 13 | Name on the ticket | $15 |
-| Spin | Super token | $300 |
+| Round | Question | Token | Answer in the game |
+| --- | --- | --- | --- |
+| 1 | How old is Brithi turning today? | $10 | 4,748 days |
+| 2 | Who chased people with a knife? | $8 | Amogh |
+| 3 | Uncles on mum’s side, start with A and have an S | $8 | 3 |
+| 4 | How old is Mamu? | $5 | It’s a problem really |
+| 5 | Where was Ashray born? | $10 | Mumbai |
+| 6 | Who is this? | $8 | Sada |
+| 7 | Where does Yashna stream? | $50 | Twitch |
+| 8 | Where did we go on 5 May 2024? | $10 | Harry Potter: A Forbidden Forest Experience |
+| 9 | Where was Adish born? | $8 | Auckland |
+| 10 | How many apostles? | $5 | 12 |
+| 11 | Great-granddad chicken fight | $10 | True |
+| 12 | Number 1 song on 7 November 2013 | $10 | Royals, Lorde |
+| 13 | Seashells | $8 | Shells |
+| Spin | Super token | $200 | $200 |
 
-Questions give one retry. Minigames can be tried again until she lands them, except This or That, which gets one clean run. The wheel is part of the gift: it always stops on the **$300** super token. The other numbers are there for the drama.
+Each question is one shot. A wrong tap spends the token and shows the answer the game is using. The wheel always stops on the **$200** super token.
 
 ## Make it more about her
 
@@ -48,4 +48,4 @@ Everything she reads lives in `js/game.js`.
 - On a quiz, mark exactly one choice with `correct: true`.
 - `SUPER_TOKEN` is the spin prize.
 
-Swap in real family jokes whenever you have them. The defaults are written so the game is funny and winnable without inventing facts about her.
+Where a question was marked with an answer, that choice is the one that pays, including “12” apostles and “Shells.” A few family facts were not marked. Those are called out at the top of `ROUNDS` with a confirm comment. Change `correct: true` if one of them is wrong.

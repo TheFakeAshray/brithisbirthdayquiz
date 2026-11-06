@@ -1,156 +1,193 @@
-// Brithi’s Birthday Bonanza
+// Brithi’s Birthday Quiz
 // Edit STAR, the prizes, and the questions here.
-// A perfect game is $200 in tokens + the $300 super token = $500.
+// A perfect game is $150 in tokens + the $200 super token = $350.
 // The wheel always lands on the super token. That is the gift.
 
 const STAR = "Brithi";
-const SUPER_TOKEN = 300;
-const SAVE_KEY = "brithi-bonanza-v1";
+const SUPER_TOKEN = 200;
+const SAVE_KEY = "brithi-birthday-quiz";
 
+// One correct choice per question. Marked answers are used even when
+// they are not the textbook fact. Unmarked family facts are noted below.
 const ROUNDS = [
   {
     kind: "quiz",
-    label: "Main character",
-    prize: 15,
-    prompt: "Thirteen rounds from now, somebody is going shopping. Who?",
-    choices: [
-      { text: STAR, correct: true },
-      { text: "The ceiling fan", correct: false },
-      { text: "A pile of unmatched socks", correct: false }
-    ]
-  },
-  {
-    kind: "quiz",
-    label: "Birthday breakfast",
-    prize: 12,
-    prompt: "Birthday breakfast. Choose wisely.",
-    choices: [
-      { text: "Cake. Fork optional.", correct: true },
-      { text: "One dignified ice cube", correct: false },
-      { text: "Plain rice and a lecture", correct: false }
-    ]
-  },
-  {
-    kind: "balloons",
-    label: "Balloon tax",
+    label: "How old",
     prize: 10,
-    prompt: "Pop 8 balloons.",
-    detail: "They wobble on purpose. Eight pops pockets the token."
+    prompt: "How old is Brithi turning today?",
+    choices: [
+      { text: "6 years", correct: false },
+      { text: "12 years", correct: false },
+      { text: "14 years", correct: false },
+      { text: "4,748 days", correct: true }
+    ]
   },
   {
     kind: "quiz",
-    label: "Shop doors",
+    label: "The knife",
     prize: 8,
-    prompt: "The shop doors open. What is the correct first move?",
+    prompt: "Who in the family has chased multiple people with a knife?",
     choices: [
-      { text: "Walk toward the thing that makes you grin", correct: true },
-      { text: "Report to the returns desk, just in case", correct: false },
-      { text: "Hide in a rack of coats until next year", correct: false }
+      { text: "Amogh", correct: true },
+      { text: "Mamu", correct: false },
+      { text: "Samith", correct: false },
+      { text: "Adish", correct: false }
     ]
   },
   {
     kind: "quiz",
-    label: "Cake science",
-    prize: 15,
-    prompt: "Science question. How much birthday cake should be eaten?",
+    label: "Mum’s uncles",
+    prize: 8,
+    long: true,
+    prompt: "How many uncles does Brithi have on her mum’s side whose first names start with A and have an S in them?",
     choices: [
-      { text: "Enough that the day feels like a birthday", correct: true },
-      { text: "A medically suspicious crumb", correct: false },
-      { text: "None. Stare at it. Build character.", correct: false }
+      { text: "1", correct: false },
+      { text: "3", correct: true },
+      { text: "5", correct: false },
+      { text: "7", correct: false }
     ]
   },
   {
-    kind: "memory",
-    label: "Match the party",
-    prize: 12,
-    prompt: "Match the party pairs.",
-    detail: "Flip two. Remember where the cake went."
+    kind: "quiz",
+    label: "Mamu’s age",
+    prize: 5,
+    prompt: "How old is Mamu?",
+    choices: [
+      { text: "Old", correct: false },
+      { text: "Really old", correct: false },
+      { text: "Quite old", correct: false },
+      { text: "It’s a problem really", correct: true }
+    ]
   },
   {
     kind: "quiz",
-    label: "Golden token",
+    label: "Ashray",
+    prize: 10,
+    prompt: "What city was Ashray born in?",
+    choices: [
+      { text: "Auckland", correct: false },
+      { text: "Melbourne", correct: false },
+      { text: "Sydney", correct: false },
+      { text: "Mumbai", correct: true }
+    ]
+  },
+  {
+    kind: "quiz",
+    label: "Who is this",
+    prize: 8,
+    image: "img/who-is-this.jpg",
+    imageAlt: "A baby in a pink striped outfit, held outdoors.",
+    prompt: "Who is this?",
+    choices: [
+      { text: "Sada", correct: true },
+      { text: "Adish", correct: false },
+      { text: "Sukanya", correct: false },
+      { text: "Brithi", correct: false }
+    ]
+  },
+  {
+    kind: "quiz",
+    label: "Yashna",
     prize: 50,
     golden: true,
-    prompt: "The golden rule of this shopping spree is…",
+    // Confirm: set to Twitch.
+    prompt: "What streaming platform does Yashna stream on?",
     choices: [
-      { text: `If it makes ${STAR} grin, it goes in the cart.`, correct: true },
-      { text: "Beige only. Sensible only. Fun never.", correct: false },
-      { text: "Put it back if it looks like a good time.", correct: false }
+      { text: "Twitch", correct: true },
+      { text: "YouTube", correct: false },
+      { text: "Kick", correct: false },
+      { text: "TikTok", correct: false }
     ]
   },
   {
     kind: "quiz",
-    label: "The perfect thing",
-    prize: 15,
-    prompt: "You have found the exact right thing. Your line is:",
-    choices: [
-      { text: "This one.", correct: true },
-      { text: "I’ll think about it until the season changes.", correct: false },
-      { text: "Does it come in a color I don’t like?", correct: false }
-    ]
-  },
-  {
-    kind: "catch",
-    label: "Gift rain",
+    label: "5 May 2024",
     prize: 10,
-    prompt: "Catch 7 gifts.",
-    detail: "The basket follows your finger. Seven catches and the token is yours."
+    long: true,
+    // Confirm: set to the Forbidden Forest.
+    prompt: "Where did we go on 5 May 2024?",
+    choices: [
+      { text: "A garden", correct: false },
+      { text: "Harry Potter: A Forbidden Forest Experience", correct: true },
+      { text: "Mount Martha, Victoria", correct: false },
+      { text: "Wellington", correct: false }
+    ]
   },
   {
     kind: "quiz",
-    label: "Family duty",
+    label: "Adish",
     prize: 8,
-    prompt: `While ${STAR} shops, the family should…`,
+    prompt: "What city was Adish born in?",
     choices: [
-      { text: "Carry the bags and keep the compliments coming", correct: true },
-      { text: "Suggest something practical instead", correct: false },
-      { text: "Wait in total silence, for some reason", correct: false }
+      { text: "Shanghai", correct: false },
+      { text: "Auckland", correct: true },
+      { text: "Mumbai", correct: false },
+      { text: "Queenstown", correct: false }
     ]
-  },
-  {
-    kind: "thisorthat",
-    label: "This or that",
-    prize: 15,
-    prompt: "Fast picks. Trust the birthday instinct.",
-    pairs: [
-      { prompt: "More birthday?", a: "Sprinkles", b: "Plain oatmeal", correct: "a" },
-      { prompt: "Bring which one?", a: "A stapler", b: "Confetti", correct: "b" },
-      { prompt: "Better afternoon?", a: "Shopping together", b: "Sorting the junk drawer", correct: "a" },
-      { prompt: "What should we hear?", a: "Hold music", b: "The birthday song", correct: "b" }
-    ]
-  },
-  {
-    kind: "reaction",
-    label: "Present timing",
-    prize: 15,
-    prompt: "Tap the present the moment it pops.",
-    detail: "Three clean taps. Waiting is the whole trick."
   },
   {
     kind: "quiz",
-    label: "Name on the ticket",
-    prize: 15,
-    prompt: "Last one. Whose birthday bonanza is this?",
+    label: "Apostles",
+    prize: 5,
+    long: true,
+    prompt: "On 29 December 2023, we took you to see the Twelve Apostles. How many apostles are there actually?",
     choices: [
-      { text: `${STAR}’s`, correct: true },
-      { text: "The mannequin by the window", correct: false },
-      { text: "Whoever finds the receipt later", correct: false }
+      { text: "1", correct: false },
+      { text: "7", correct: false },
+      { text: "12", correct: true },
+      { text: "18", correct: false }
+    ]
+  },
+  {
+    kind: "quiz",
+    label: "Chicken fight",
+    prize: 10,
+    prompt: "True or false: your great-granddad used to chicken fight.",
+    choices: [
+      { text: "True", correct: true },
+      { text: "False", correct: false }
+    ]
+  },
+  {
+    kind: "quiz",
+    label: "Number one",
+    prize: 10,
+    long: true,
+    prompt: "What was the number 1 song on the day Brithi was born, 7 November 2013?",
+    choices: [
+      { text: "Royals, Lorde", correct: true },
+      { text: "Radioactive, Imagine Dragons", correct: false },
+      { text: "Thrift Shop, Macklemore", correct: false },
+      { text: "APT., Bruno Mars and Rosé", correct: false }
+    ]
+  },
+  {
+    kind: "quiz",
+    label: "Seashells",
+    prize: 8,
+    long: true,
+    prompt: "Sally sells seashells by the seashore. She sells seashells on the seashell shore. The seashells she sells are seashore shells, of that I’m sure?",
+    choices: [
+      { text: "Sally", correct: false },
+      { text: "Sells", correct: false },
+      { text: "Sea", correct: false },
+      { text: "Shells", correct: true }
     ]
   }
 ];
 
 const SLICES = [
-  { label: "$300", color: "#ffe29a" },
-  { label: "$40", color: "#ff8b95" },
-  { label: "$80", color: "#ffd36a" },
-  { label: "$120", color: "#7ee0d2" },
+  { label: "$200", color: "#ffe29a" },
+  { label: "$30", color: "#ff8b95" },
+  { label: "$60", color: "#ffd36a" },
+  { label: "$90", color: "#7ee0d2" },
   { label: "$20", color: "#ffb3c7" },
-  { label: "$160", color: "#b7c8ff" },
-  { label: "$60", color: "#ffc49a" },
-  { label: "$250", color: "#ddd0ff" }
+  { label: "$120", color: "#b7c8ff" },
+  { label: "$40", color: "#ffc49a" },
+  { label: "$150", color: "#ddd0ff" }
 ];
 
-// Six full turns, then stop with $300 under the pointer.
+// Six full turns, then stop with $200 under the pointer.
 const LANDING_TURN = 337.5;
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -417,11 +454,10 @@ function prizeRow(round, index) {
   return row;
 }
 
-function finishRound(won) {
-  if (!roundOpen) return;
+function settleRound(won) {
+  if (!roundOpen) return false;
   roundOpen = false;
   halt();
-  const round = ROUNDS[state.index];
   state.results[state.index] = won ? "won" : "miss";
   if (won) {
     playCorrect();
@@ -433,6 +469,19 @@ function finishRound(won) {
   setPurse(tokenTotal());
   save();
   renderTrack();
+  return true;
+}
+
+function advanceRound() {
+  state.index += 1;
+  save();
+  if (state.index >= ROUNDS.length) renderFinale();
+  else renderRound();
+}
+
+function finishRound(won) {
+  const round = ROUNDS[state.index];
+  if (!settleRound(won)) return;
   renderResult(round, won);
 }
 
@@ -450,12 +499,7 @@ function renderResult(round, won) {
     card.append(wrap);
   }
   const next = button(state.index === ROUNDS.length - 1 ? "To the super spin" : "Next round", "btn");
-  next.addEventListener("click", () => {
-    state.index += 1;
-    save();
-    if (state.index >= ROUNDS.length) renderFinale();
-    else renderRound();
-  });
+  next.addEventListener("click", advanceRound);
   const actions = el("div", "actions");
   actions.append(next);
   card.append(actions);
@@ -477,46 +521,51 @@ function renderRound() {
 function renderQuiz(round) {
   const card = el("section", "card" + (round.golden ? " golden" : ""));
   card.append(prizeRow(round, state.index));
-  card.append(el("h1", "prompt", round.prompt));
+  card.append(el("h1", round.long ? "prompt long" : "prompt", round.prompt));
+  if (round.image) {
+    const photo = el("img", "quiz-photo");
+    photo.src = round.image;
+    photo.alt = round.imageAlt || "";
+    card.append(photo);
+  }
   const choices = shuffle(round.choices);
   const list = el("div", "choices");
-  const status = el("p", "status", round.golden ? "This token is worth fifty dollars." : "Pick the birthday answer.");
-  let strikes = 0;
+  const foot = el("div", "round-foot");
+  const status = el("p", "status", round.golden ? "This token is worth fifty dollars. One shot." : "One shot.");
+  foot.append(status);
   let locked = false;
 
   choices.forEach((choice, choiceIndex) => {
     const choiceBtn = buttonEl(choice.text, "choice");
     choiceBtn.addEventListener("click", () => {
       if (locked || choiceBtn.disabled) return;
-      if (choice.correct) {
-        locked = true;
+      locked = true;
+      list.querySelectorAll(".choice").forEach((btn) => { btn.disabled = true; });
+      const won = choice.correct;
+      if (won) {
         choiceBtn.classList.add("is-correct");
-        status.textContent = "Yes. That one.";
-        window.setTimeout(() => finishRound(true), 450);
-        return;
-      }
-      strikes += 1;
-      choiceBtn.classList.add("is-wrong");
-      choiceBtn.disabled = true;
-      playWrong();
-      card.classList.remove("shake");
-      void card.offsetWidth;
-      card.classList.add("shake");
-      if (strikes >= 2) {
-        locked = true;
-        status.textContent = "Not this round.";
+      } else {
+        choiceBtn.classList.add("is-wrong");
+        card.classList.remove("shake");
+        void card.offsetWidth;
+        card.classList.add("shake");
         const right = list.querySelectorAll(".choice")[choices.findIndex((item) => item.correct)];
         if (right) right.classList.add("is-correct");
-        window.setTimeout(() => finishRound(false), 700);
-      } else {
-        status.textContent = "Nope. One more try.";
       }
+      settleRound(won);
+      if (won) foot.insertBefore(coin(round.prize, "sm"), status);
+      status.textContent = won ? "Token pocketed." : "No token this round.";
+      status.classList.add("round-note");
+      const next = button(state.index === ROUNDS.length - 1 ? "To the super spin" : "Next round", "btn compact");
+      next.addEventListener("click", advanceRound);
+      foot.append(next);
+      next.focus({ preventScroll: true });
     });
     choiceBtn.dataset.key = String(choiceIndex + 1);
     list.append(choiceBtn);
   });
 
-  card.append(list, status);
+  card.append(list, foot);
   mount(card);
 
   halt = () => {
@@ -998,7 +1047,7 @@ function renderFinale() {
     state.superAwarded = true;
     save();
     heading.textContent = "Super token.";
-    lede.textContent = "Three hundred dollars, on top of every token you won.";
+    lede.textContent = "Two hundred dollars, on top of every token you won.";
     playFanfare();
     burst(140);
     slot.replaceChildren();
@@ -1029,9 +1078,9 @@ function renderFinale() {
         const actions = el("div", "actions");
         actions.append(again);
         slot.append(actions);
-        const perfect = to === 500;
+        const perfect = to === 350;
         const signoff = el("p", "fine", perfect
-          ? "Every token. A perfect five hundred. Spend it on things that make you grin."
+          ? "Every token. A perfect three hundred and fifty. Spend it on things that make you grin."
           : "Spend it on things that make you grin. Bags are a group activity.");
         slot.append(signoff);
       }
@@ -1109,12 +1158,12 @@ function renderIntro() {
   const title = el("h1", "display");
   title.append(document.createTextNode(STAR + "’s "));
   const em = el("em", null, "Birthday");
-  title.append(em, document.createTextNode(" Bonanza"));
+  title.append(em, document.createTextNode(" Quiz"));
   card.append(title);
-  card.append(el("p", "lede", "A shopping spree is hiding in this quiz. Win a round, pocket a token. Thirteen rounds, then the wheel."));
+  card.append(el("p", "lede", "Thirteen family questions. One answer each, then the wheel."));
   const rules = el("ul", "rules");
   [
-    ["Most tokens", " are $8 to $15."],
+    ["Most tokens", " are $5 to $10."],
     ["One golden token", " is worth $50."],
     ["The last spin", " pays a super token."]
   ].forEach((parts) => {
@@ -1152,7 +1201,7 @@ function renderIntro() {
 
 document.addEventListener("keydown", (event) => {
   if (!roundOpen) return;
-  if (event.key !== "1" && event.key !== "2" && event.key !== "3") return;
+  if (event.key !== "1" && event.key !== "2" && event.key !== "3" && event.key !== "4") return;
   const target = stage.querySelector('.choice[data-key="' + event.key + '"]');
   if (target && !target.disabled) target.click();
 });
