@@ -14,7 +14,7 @@ python3 -m http.server 5173
 
 Then visit `http://localhost:5173`. The live quiz is at `https://thefakeashray.com/brithisbirthdayquiz/`.
 
-The tab remembers a game in progress. Closing the tab starts fresh. Refreshing mid-round replays that round; finished rounds stay pocketed.
+The quiz is one play-through on each browser. A reload continues the same game. After the spin, that browser stays on the result.
 
 `?preview=ending` opens the final wheel with every round already won, so you can rehearse the ending.
 

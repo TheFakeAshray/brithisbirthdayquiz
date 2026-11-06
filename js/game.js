@@ -6,6 +6,7 @@
 const STAR = "Brithi";
 const SUPER_TOKEN = 200;
 const SAVE_KEY = "brithi-birthday-quiz";
+const rehearsal = new URLSearchParams(window.location.search).get("preview") === "ending";
 
 // One correct choice per question. Marked answers are used even when
 // they are not the textbook fact. Unmarked family facts are noted below.
@@ -268,8 +269,9 @@ function bumpPurse() {
 }
 
 function save() {
+  if (rehearsal) return;
   try {
-    sessionStorage.setItem(SAVE_KEY, JSON.stringify({
+    localStorage.setItem(SAVE_KEY, JSON.stringify({
       started: state.started,
       index: state.index,
       results: state.results,
@@ -283,7 +285,7 @@ function save() {
 
 function loadSave() {
   try {
-    const raw = sessionStorage.getItem(SAVE_KEY);
+    const raw = localStorage.getItem(SAVE_KEY);
     if (!raw) return null;
     const data = JSON.parse(raw);
     if (!data || !Array.isArray(data.results) || data.results.length !== ROUNDS.length) return null;
@@ -291,10 +293,6 @@ function loadSave() {
   } catch (err) {
     return null;
   }
-}
-
-function clearSave() {
-  try { sessionStorage.removeItem(SAVE_KEY); } catch (err) { /* ignore */ }
 }
 
 function applySave(data) {
@@ -1065,11 +1063,6 @@ function renderFinale() {
       else {
         bumpPurse();
         slot.append(buildReceipt(to));
-        const again = button("Play again", "btn secondary");
-        again.addEventListener("click", resetGame);
-        const actions = el("div", "actions");
-        actions.append(again);
-        slot.append(actions);
         const perfect = to === 350;
         const signoff = el("p", "fine", perfect
           ? "Every token. A perfect three hundred and fifty. Spend it on things that make you grin."
@@ -1115,19 +1108,7 @@ function buildReceipt(total) {
   return list;
 }
 
-function resetGame() {
-  clearSave();
-  state.started = false;
-  state.index = 0;
-  state.results = Array(ROUNDS.length).fill(null);
-  state.superAwarded = false;
-  setPurse(0);
-  renderTrack();
-  renderIntro();
-}
-
 function startFresh() {
-  clearSave();
   state.started = true;
   state.index = 0;
   state.results = Array(ROUNDS.length).fill(null);
@@ -1144,7 +1125,6 @@ function continueGame() {
 }
 
 function renderIntro() {
-  const saved = !state.started ? loadSave() : null;
   const card = el("section", "card");
   card.append(el("p", "kicker", "Admit one"));
   const title = el("h1", "display");
@@ -1161,28 +1141,12 @@ function renderIntro() {
   note.append(bye);
   card.append(note);
   const actions = el("div", "actions");
-  if (saved && (saved.index > 0 || saved.results.some(Boolean) || saved.superAwarded)) {
-    const cont = button("Continue the spree", "btn");
-    cont.addEventListener("click", () => {
-      applySave(saved);
-      try { ac(); } catch (err) { /* ignore */ }
-      continueGame();
-    });
-    const fresh = button("Start over", "btn secondary");
-    fresh.addEventListener("click", () => {
-      try { ac(); } catch (err) { /* ignore */ }
-      startFresh();
-    });
-    actions.append(cont, fresh);
-    card.append(el("p", "fine", "This tab remembers a game in progress."));
-  } else {
-    const start = button("Let’s go, " + STAR, "btn");
-    start.addEventListener("click", () => {
-      try { ac(); } catch (err) { /* ignore */ }
-      startFresh();
-    });
-    actions.append(start);
-  }
+  const start = button("Let’s go, " + STAR, "btn");
+  start.addEventListener("click", () => {
+    try { ac(); } catch (err) { /* ignore */ }
+    startFresh();
+  });
+  actions.append(start);
   card.append(actions);
   mount(card);
 }
@@ -1205,8 +1169,7 @@ muteBtn.addEventListener("click", () => {
 });
 
 function boot() {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get("preview") === "ending") {
+  if (rehearsal) {
     state.started = true;
     state.index = ROUNDS.length;
     state.results = ROUNDS.map(() => "won");
@@ -1214,6 +1177,12 @@ function boot() {
     setPurse(tokenTotal());
     renderTrack();
     renderFinale();
+    return;
+  }
+  const saved = loadSave();
+  if (saved && saved.started) {
+    applySave(saved);
+    continueGame();
     return;
   }
   setPurse(0);
