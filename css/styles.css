@@ -272,7 +272,7 @@ h1.prompt.long {
 }
 
 .quiz-photo.is-zoomed {
-  transform: scale(8);
+  transform: scale(var(--photo-zoom, 7));
 }
 
 .lede, .status, .fine {
