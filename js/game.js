@@ -145,7 +145,7 @@ const ROUNDS = [
     kind: "quiz",
     label: "Chicken fight",
     prize: 10,
-    prompt: "True or false: your great-granddad used to chicken fight.",
+    prompt: "True or false: your great great granddad used to chicken fight.",
     choices: [
       { text: "True", correct: true },
       { text: "False", correct: false }

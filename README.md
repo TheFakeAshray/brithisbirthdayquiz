@@ -32,7 +32,7 @@ The quiz is one play-through on each browser. A reload continues the same game. 
 | 8 | Where did we go on 5 May 2024? | $10 | Harry Potter: A Forbidden Forest Experience |
 | 9 | Where was Adish born? | $8 | Auckland |
 | 10 | How many apostles? | $5 | 12 |
-| 11 | Great-granddad chicken fight | $10 | True |
+| 11 | Great great granddad chicken fight | $10 | True |
 | 12 | Number 1 song on 7 November 2013 | $10 | Royals, Lorde |
 | 13 | Seashells | $8 | Shells |
 | Spin | Super token | $200 | $200 |
