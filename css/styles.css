@@ -303,24 +303,17 @@ h1.prompt.long {
   color: #8a5a3a;
 }
 
-.rules {
-  list-style: none;
-  margin: 0 0 18px;
-  padding: 0;
-  display: grid;
-  gap: 8px;
+.note p {
+  margin: 12px 0 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
 }
 
-.rules li {
-  background: #fff;
-  border: 2px solid var(--ink);
-  border-radius: 14px;
-  padding: 10px 12px;
-  box-shadow: 3px 3px 0 var(--ink);
-  font-weight: 600;
+.signoff {
+  font-family: var(--serif);
+  font-style: italic;
+  line-height: 1.45;
 }
-
-.rules strong { font-family: var(--serif); }
 
 .actions {
   display: flex;

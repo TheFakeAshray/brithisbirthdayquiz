@@ -1152,18 +1152,14 @@ function renderIntro() {
   const em = el("em", null, "Birthday");
   title.append(em, document.createTextNode(" Quiz"));
   card.append(title);
-  card.append(el("p", "lede", "Thirteen family questions. One answer each, then the wheel."));
-  const rules = el("ul", "rules");
-  [
-    ["Most tokens", " are $5 to $10."],
-    ["One golden token", " is worth $50."],
-    ["The last spin", " pays a super token."]
-  ].forEach((parts) => {
-    const li = el("li");
-    li.append(el("strong", null, parts[0]), document.createTextNode(parts[1]));
-    rules.append(li);
-  });
-  card.append(rules);
+  const note = el("div", "note");
+  note.append(el("p", null, "Hi " + STAR + "! We wanted to treat you but you didn’t know what you wanted, so we thought we’d take you on a shopping spree. You’ll have one day, and we can go to any mall you want. The budget you win here is what you get to spend."));
+  const bye = el("p", "signoff");
+  bye.append(document.createTextNode("Good luck, have fun."));
+  bye.append(document.createElement("br"));
+  bye.append(document.createTextNode("Love Ashray and Adish"));
+  note.append(bye);
+  card.append(note);
   const actions = el("div", "actions");
   if (saved && (saved.index > 0 || saved.results.some(Boolean) || saved.superAwarded)) {
     const cont = button("Continue the spree", "btn");
