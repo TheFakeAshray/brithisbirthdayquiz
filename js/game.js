@@ -78,7 +78,7 @@ const ROUNDS = [
     prize: 8,
     image: "img/who-is-this.jpg",
     imageAlt: "A baby in a pink striped outfit, held outdoors.",
-    imageZoom: 7,
+    imageZoom: 5,
     prompt: "Who is this?",
     choices: [
       { text: "Sada", correct: true },
