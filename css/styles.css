@@ -253,18 +253,26 @@ h1.prompt.long {
   line-height: 1.28;
 }
 
-.quiz-photo {
-  display: block;
+.quiz-frame {
+  overflow: hidden;
   width: 100%;
-  height: auto;
-  max-height: 420px;
-  object-fit: contain;
-  object-position: center;
   margin: 4px 0 14px;
   border: 2px solid var(--ink);
   border-radius: 16px;
   background: #fff;
   box-shadow: 3px 3px 0 var(--ink);
+}
+
+.quiz-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: right bottom;
+  transition: transform 0.7s ease;
+}
+
+.quiz-photo.is-zoomed {
+  transform: scale(8);
 }
 
 .lede, .status, .fine {
@@ -786,6 +794,7 @@ h1.prompt.long {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .quiz-photo { transition: none; }
   .card,
   .bulb.current,
   .balloon,

@@ -78,6 +78,7 @@ const ROUNDS = [
     prize: 8,
     image: "img/who-is-this.jpg",
     imageAlt: "A baby in a pink striped outfit, held outdoors.",
+    imageZoom: 8,
     prompt: "Who is this?",
     choices: [
       { text: "Sada", correct: true },
@@ -512,11 +513,14 @@ function renderQuiz(round) {
   const card = el("section", "card" + (round.golden ? " golden" : ""));
   card.append(prizeRow(round, state.index));
   card.append(el("h1", round.long ? "prompt long" : "prompt", round.prompt));
+  let photo = null;
   if (round.image) {
-    const photo = el("img", "quiz-photo");
+    const frame = el("div", "quiz-frame");
+    photo = el("img", "quiz-photo");
     photo.src = round.image;
     photo.alt = round.imageAlt || "";
-    card.append(photo);
+    frame.append(photo);
+    card.append(frame);
   }
   const choices = shuffle(round.choices);
   const list = el("div", "choices");
@@ -543,6 +547,7 @@ function renderQuiz(round) {
         if (right) right.classList.add("is-correct");
       }
       settleRound(won);
+      if (photo && round.imageZoom) photo.classList.add("is-zoomed");
       if (won) foot.insertBefore(coin(round.prize, "sm"), status);
       status.textContent = won ? "Token pocketed." : "No token this round.";
       status.classList.add("round-note");
