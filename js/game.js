@@ -431,18 +431,10 @@ function renderTrack() {
   });
 }
 
-function focusHeading(node) {
-  const heading = node.querySelector("h1");
-  if (!heading) return;
-  heading.tabIndex = -1;
-  heading.focus({ preventScroll: true });
-}
-
 function mount(node) {
   halt();
   halt = () => {};
   stage.replaceChildren(node);
-  focusHeading(node);
 }
 
 function prizeRow(round, index) {
