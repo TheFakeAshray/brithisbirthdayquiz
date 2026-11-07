@@ -28,7 +28,7 @@ The quiz is one play-through on each browser. A reload continues the same game. 
 | 4 | How old is Mamu? | $5 | It’s a problem really |
 | 5 | Where was Ashray born? | $10 | Mumbai |
 | 6 | Who is this? | $8 | Sada |
-| 7 | Where does Yashna stream? | $50 | Twitch |
+| 7 | Where was pavlova invented? | $50 | Aotearoa |
 | 8 | Where did we go on 5 May 2024? | $10 | Harry Potter: A Forbidden Forest Experience |
 | 9 | Where was Adish born? | $8 | Auckland |
 | 10 | How many apostles? | $5 | 12 |

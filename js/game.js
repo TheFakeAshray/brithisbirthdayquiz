@@ -89,16 +89,16 @@ const ROUNDS = [
   },
   {
     kind: "quiz",
-    label: "Yashna",
+    label: "Pavlova",
     prize: 50,
     golden: true,
-    // Confirm: set to Twitch.
-    prompt: "What streaming platform does Yashna stream on?",
+    note: "Never forget your roots.",
+    prompt: "Where was pavlova invented?",
     choices: [
-      { text: "Twitch", correct: true },
-      { text: "YouTube", correct: false },
-      { text: "Kick", correct: false },
-      { text: "TikTok", correct: false }
+      { text: "Aotearoa", correct: true },
+      { text: "Australia", correct: false },
+      { text: "England", correct: false },
+      { text: "Jamaica", correct: false }
     ]
   },
   {
@@ -553,7 +553,7 @@ function renderQuiz(round) {
         photo.classList.add("is-zoomed");
       }
       if (won) foot.insertBefore(coin(round.prize, "sm"), status);
-      status.textContent = won ? "Token pocketed." : (round.miss || "No token this round.");
+      status.textContent = round.note || (won ? "Token pocketed." : (round.miss || "No token this round."));
       status.classList.add("round-note");
       const next = button(state.index === ROUNDS.length - 1 ? "To the super spin" : "Next round", "btn compact");
       next.addEventListener("click", advanceRound);
