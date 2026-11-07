@@ -133,7 +133,7 @@ const ROUNDS = [
     prize: 5,
     long: true,
     miss: "It's in the name, silly.",
-    prompt: "On 29 December 2023, we took you to see the Twelve Apostles. How many apostles are there actually?",
+    prompt: "On 29 December 2023, we took you to see the Twelve Apostles. How many apostles are there?",
     choices: [
       { text: "1", correct: false },
       { text: "7", correct: false },
